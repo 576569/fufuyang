@@ -2,6 +2,9 @@
 #include <iostream>
 #include <graphics.h>//easyx
 #include <vector>
+#include <PathCch.h>
+#pragma comment(lib, "PathCch.lib")
+#include <string>
 #include <conio.h>
 using namespace std;
 
@@ -464,6 +467,15 @@ bool Play()
 
 int main()
 {
+	// “重生锚”，切换到程序所在路径
+	wchar_t* wcmdline = GetCommandLineW();
+	int argc; wchar_t** wargv;
+	wargv = CommandLineToArgvW(wcmdline, &argc);
+	std::wstring self_path = wargv[0];
+	PathCchRemoveFileSpec(&self_path[0], self_path.size());
+	self_path.resize(wcslen(self_path.data()));
+	SetCurrentDirectoryW(self_path.c_str());
+	
 	// easyx初始化
 	initgraph(swidth, sheight, EW_NOMINIMIZE | EW_SHOWCONSOLE);
 	bool is_live = true;
