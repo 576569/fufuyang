@@ -477,7 +477,7 @@ int main()
 	SetCurrentDirectoryW(self_path.c_str());
 	
 	// easyx≥ı ºªØ
-	initgraph(swidth, sheight, EW_NOMINIMIZE | EW_SHOWCONSOLE);
+	initgraph(swidth, sheight, EW_NOMINIMIZE);
 	bool is_live = true;
 	while (is_live)
 	{
